@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'terra/style.css' %}" />
+    <title>mainpage</title>
+  </head>
+  <body>
+    <h1>Shop page</h1>
+    {%if list_of_objects%}
+    <ul>
+      {%for terrarium in list_of_objects%}
+      <li>
+        <a href="{%url 'terra:info' terrarium.id %}">
+          {{terrarium.size }} {{terrarium.material}}</a
+        >
+      </li>
+      {%endfor%}
+    </ul>
+    {%else%}
+    <h4>There is no items available</h4>
+    {%endif%}
+    <div>
+      {%if request.user.is_authenticated%}
+      <p>We're happy to see you :)</p>
+      <button type="button">
+        <a href="{% url 'terra:logout' %}">Sign out</a>
+      </button>
+      {%else%}
+      <button type="button">
+        <a href="{% url 'terra:login_register' %}">Sign up/Sign in</a>
+      </button>
+      {%endif%}
+    </div>
+  </body>
+</html>

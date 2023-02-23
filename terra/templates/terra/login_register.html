@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'terra/style.css' %}" />
+    <title>information page</title>
+  </head>
+  <body>
+    <h2>Sign in or sign up to buy our quality terraria</h2>
+
+    <button class="signin" type="button">
+      <a href="{% url 'terra:login'  %}">Sign in</a>
+    </button>
+
+    <button type="button">
+      <a href="{% url 'terra:register' %}">Sign up</a>
+    </button>
+  </body>
+</html>

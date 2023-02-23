@@ -1,0 +1,11 @@
+body {
+  background-color: rgb(94, 211, 126);
+  display: flex;
+  place-items: center;
+  display: grid;
+  font-size: x-large;
+}
+
+.signin {
+  margin-bottom: 1%;
+}

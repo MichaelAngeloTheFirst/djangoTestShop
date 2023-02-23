@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'terra/style.css' %}" />
+    <title>information page</title>
+  </head>
+  <body>
+    <h2>About terrarium</h2>
+
+    <p>
+      Terrarium version:<strong>{{terrarium.size}}</strong>.<br />
+      This model is made of <strong>{{terrarium.material}}</strong>.<br />
+      It was producted in <strong>{{terrarium.year_of_prod}}</strong>.<br />
+    </p>
+    <p>
+      <button type="button">
+        <a href="{% url 'terra:buy' terrarium.id %}"
+          >Buy for <strong>{{terrarium.price}}$</strong></a
+        >
+      </button>
+    </p>
+  </body>
+</html>
