@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.models import User
 
 
 from .models import Terrarium
@@ -38,9 +39,12 @@ class LoginRegisterView(generic.TemplateView):
     template_name = 'terra/login_register.html'
 
 
-class CartView(generic.TemplateView):
+class CartView(generic.ListView):
     template_name = 'terra/cart.html'
+    context_object_name = 'list_of_objects'
 
+    def get_queryset(self):
+        return Terrarium.objects.all()
 
 # @login_required()
 # def add_to_cart(request, terrarium_id):
@@ -50,6 +54,13 @@ class CartView(generic.TemplateView):
 # def buy(request, terrarium_id):
 #     Terrarium.objects.filter(id=terrarium_id).delete()
 #     return redirect('/terra/')
+
+@login_required()
+def add_to_cart(request, user, terrarium_id):
+    terrarium = Terrarium.objects.get(id=terrarium_id)
+    terrarium.user = user
+    terrarium.save()
+    return redirect('/terra/')
 
 
 def logout_view(request):

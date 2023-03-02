@@ -12,5 +12,6 @@ urlpatterns = [
     # path('buy/<int:terrarium_id>/', views.buy, name='buy'),
     path('logout/', views.logout_view, name='logout'),
     path('cart/', views.CartView.as_view(), name='cart'),
+    path('add_to_cart/',views.add_to_cart, name='add_to_cart'),
     # path('',views.index, name='index'),
 ]
