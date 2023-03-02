@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
-    {% load static %}
 
-    <link rel="stylesheet" href="{% static 'terra/style.css' %}" />
-    <title>login page</title>
-  </head>
-  <body>
-    <h1>Login</h1>
-    <form method="POST">
-      {{form.as_p}} {%csrf_token%}
-      <input type="submit" name="Create Account" />
-    </form>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
+  {% load static %}
+
+  <link rel="stylesheet" href="{% static 'terra/login_register_style.css' %}" />
+  <title>login page</title>
+</head>
+
+<body>
+  <h1>Login</h1>
+  <form method="POST">
+    {{form.as_p}} {%csrf_token%}
+    <input type="submit" name="Create Account" />
+  </form>
+</body>
+
 </html>

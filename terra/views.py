@@ -16,7 +16,7 @@ class IndexView(generic.ListView):
     context_object_name = 'list_of_objects'
 
     def get_queryset(self):
-        return Terrarium.objects.all()[:5]
+        return Terrarium.objects.all()
 
 
 class RegisterView(generic.CreateView):
@@ -38,10 +38,18 @@ class LoginRegisterView(generic.TemplateView):
     template_name = 'terra/login_register.html'
 
 
-@login_required()
-def buy(request, terrarium_id):
-    Terrarium.objects.filter(id=terrarium_id).delete()
-    return redirect('/terra/')
+class CartView(generic.TemplateView):
+    template_name = 'terra/cart.html'
+
+
+# @login_required()
+# def add_to_cart(request, terrarium_id):
+
+
+# @login_required()
+# def buy(request, terrarium_id):
+#     Terrarium.objects.filter(id=terrarium_id).delete()
+#     return redirect('/terra/')
 
 
 def logout_view(request):

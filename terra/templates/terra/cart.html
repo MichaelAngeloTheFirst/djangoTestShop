@@ -4,19 +4,19 @@
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
+  
+  {%comment%}
   {% load static %}
 
   <link rel="stylesheet" href="{% static 'terra/login_register_style.css' %}" />
-  <title>register page</title>
+  {%endcomment%}
+  <title>shopping cart</title>
 </head>
 
 <body>
-  <h1>Register</h1>
+  <h1>Prodcuts in your shopping cart</h1>
 
-  <form method="POST" action="">
-    {{form.as_p}} {%csrf_token%}
-    <input type="submit" name="Create Account" />
-  </form>
+
 </body>
 
 </html>

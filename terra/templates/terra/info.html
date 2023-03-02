@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
-    {% load static %}
 
-    <link rel="stylesheet" href="{% static 'terra/style.css' %}" />
-    <title>information page</title>
-  </head>
-  <body>
-    <h2>About terrarium</h2>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
+  {% load static %}
 
-    <p>
-      Terrarium version:<strong>{{terrarium.size}}</strong>.<br />
-      This model is made of <strong>{{terrarium.material}}</strong>.<br />
-      It was producted in <strong>{{terrarium.year_of_prod}}</strong>.<br />
-    </p>
-    <p>
-      <button type="button">
+  <link rel="stylesheet" href="{% static 'terra/info_style.css' %}" />
+  <title>information page</title>
+</head>
+
+<body>
+  <h2>About terrarium</h2>
+
+  <p>
+    Terrarium version:<strong>{{terrarium.size}}</strong>.<br />
+    This model is made of <strong>{{terrarium.material}}</strong>.<br />
+    It was producted in <strong>{{terrarium.year_of_prod}}</strong>.<br />
+    Price: <strong>{{terrarium.price}}</strong>
+  </p>
+  <p>
+    {% if request.user.is_authenticated%}
+    <button type="button">
+      <a href="{%url 'terra:cart' %}">
+        Add to cart
+      </a>
+    </button>
+    {%else%}
+    <button type="button">
+      <a href="{%url 'terra:login_register' %}">
+        Sign in to buy
+      </a>
+    </button>
+    {%endif%}
+
+
+    {% comment%}
+    <!-- <button type="button">
         <a href="{% url 'terra:buy' terrarium.id %}"
           >Buy for <strong>{{terrarium.price}}$</strong></a
         >
-      </button>
-    </p>
-  </body>
+      </button> -->
+    {% endcomment %}
+  </p>
+</body>
+
 </html>

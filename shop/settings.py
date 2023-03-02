@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'fontawesomefree',
     'terra.apps.TerraConfig',
     'django.contrib.admin',
     'django.contrib.auth',

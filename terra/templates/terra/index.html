@@ -1,23 +1,51 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
 
-    <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
-    {% load static %}
+<head>
+  <meta charset="utf-8" />
 
-    <link rel="stylesheet" href="{% static 'terra/style.css' %}" />
-    <title>mainpage</title>
-  </head>
-  <body>
+  <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
+
+  {% load static %}
+
+  <link rel="stylesheet" href="{% static 'terra/style.css' %}" />
+  <!-- <link rel="stylesheet" href="{% static 'terra/style.css' %   now 'U' }" /> -->
+  <!-- <link rel="stylesheet" href="static/terra/style.css?{% now 'U' %} " /> -->
+  <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+  <title>mainpage</title>
+</head>
+
+<body>
+
+
+  {% if request.user.is_authenticated%}
+  <div class="cart_button">
+    <a href="{% url 'terra:cart' %}"><i class="fa-solid fa-cart-shopping fa-lg"></i></a>
+  </div>
+  {%else%}
+  <div class="cart_button">
+    <!-- <button type="button"> -->
+    <a href="{% url 'terra:login_register' %}"><i class="fa-solid fa-cart-shopping fa-lg"></i></a>
+  </div>
+  {%endif%}
+
+
+
+
+
+  <div class="info">
+
+
+
     <h1>Shop page</h1>
     {%if list_of_objects%}
     <ul>
       {%for terrarium in list_of_objects%}
       <li>
         <a href="{%url 'terra:info' terrarium.id %}">
-          {{terrarium.size }} {{terrarium.material}}</a
-        >
+          {{terrarium.size }} {{terrarium.material}}</a>
       </li>
       {%endfor%}
     </ul>
@@ -26,7 +54,7 @@
     {%endif%}
     <div>
       {%if request.user.is_authenticated%}
-      <p>We're happy to see you :)</p>
+      <p>We're happy to see you {{ request.user.get_username}} :)</p>
       <button type="button">
         <a href="{% url 'terra:logout' %}">Sign out</a>
       </button>
@@ -35,6 +63,10 @@
         <a href="{% url 'terra:login_register' %}">Sign up/Sign in</a>
       </button>
       {%endif%}
+
     </div>
-  </body>
+  </div>
+
+</body>
+
 </html>
